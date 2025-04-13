@@ -1,0 +1,12 @@
+{
+	"dependencies": {
+		"chalk": "^5.4.1",
+		"commander": "^13.1.0",
+		"degit": "^2.8.4",
+		"fs-extra": "^11.3.0",
+		"inquirer": "^12.5.2"
+	},
+	"devDependencies": {
+		"@types/node": "^22.14.1"
+	}
+}
