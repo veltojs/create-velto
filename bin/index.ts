@@ -5,81 +5,97 @@ import chalk from 'chalk';
 import degit from 'degit';
 import fs from 'fs-extra';
 import path from 'path';
+import { fileURLToPath } from 'node:url'
 
-// 定义元数据
+const pwd = process.cwd();
 const VERSION = '1.0.0';
-const DEFAULT_TEMPLATE = 'user/github-repo'; // 替换为你的模板仓库
+const templateList = ['velto', 'velto-ts'];
+
+function pkgFromUserAgent(userAgent: string | undefined) {
+  if (!userAgent) return undefined
+  const pkgSpec = userAgent.split(' ')[0]
+  const pkgSpecArr = pkgSpec.split('/')
+  return {
+    name: pkgSpecArr[0],
+    version: pkgSpecArr[1],
+  }
+}
+
+const command = async (projectName: string, options: Record<string, string>) => {
+  const pkgInfo = pkgFromUserAgent(process.env.npm_config_user_agent)
+  const pkgManagerName = pkgInfo?.name ?? 'npm';
+  
+  try {
+    if (!projectName) {
+      const { name } = await inquirer.prompt({
+        type: 'input',
+        name: 'name',
+        message: 'Project name: ',
+        validate: (input) => !!input.trim() || 'Project name is required',
+      });
+      projectName = name;
+    }
+
+    const targetDir = path.resolve(projectName);
+    if (fs.existsSync(targetDir)) {
+      const { overwrite } = await inquirer.prompt({
+        type: 'confirm',
+        name: 'overwrite',
+        message: 'The directory already exists, is it overwritten?',
+        default: false,
+      });
+      if (!overwrite) process.exit(1);
+      await fs.remove(targetDir);
+    }
+
+    let template = options.template;
+    if (!options.template || !templateList.includes(template)) {
+      const { selectedTemplate } = await inquirer.prompt({
+        type: 'list',
+        name: 'selectedTemplate',
+        message: options.template
+          ? `"${template}" isn't a valid template. Please choose from below: `
+          : 'Select a template: ',
+        choices: templateList,
+      });
+      template = selectedTemplate;
+    }
+
+    const templatePath = path.resolve(
+      fileURLToPath(import.meta.url),
+      `../../templates/${template}`,
+    )
+
+    // const emitter = degit(templatePath, {
+    //   cache: false,
+    //   force: true,
+    // });
+    // await emitter.clone(targetDir);
+    await fs.copy(templatePath, targetDir);
+
+    const packagePath = path.join(targetDir, 'package.json');
+    if (fs.existsSync(packagePath)) {
+      const pkg = JSON.parse(fs.readFileSync(packagePath, 'utf8'));
+      pkg.name = projectName;
+      fs.writeFileSync(packagePath, JSON.stringify(pkg, null, 2));
+    }
+
+    console.log('Done. Now run:  ');
+    console.log(
+      chalk.yellow(`\ncd ${projectName}`),
+      chalk.yellow(`\n${pkgManagerName} install`),
+      chalk.yellow(`\n${pkgManagerName} run dev`),
+      '\n',
+    );
+  } catch (error) {
+    console.error(chalk.red('❌ Error: '), error);
+    process.exit(1);
+  }
+}
 
 program
   .version(VERSION)
-  .argument('[project-name]', '项目名称')
-  .option('-t, --template <template>', '指定模板')
-  .action(async (projectName, options) => {
-    try {
-      // 1. 获取项目名称
-      if (!projectName) {
-        const { name } = await inquirer.prompt({
-          type: 'input',
-          name: 'name',
-          message: '项目名称：',
-          validate: input => !!input.trim() || '名称不能为空',
-        });
-        projectName = name;
-      }
-
-      // 2. 检查目录是否存在
-      const targetDir = path.resolve(projectName);
-      if (fs.existsSync(targetDir)) {
-        const { overwrite } = await inquirer.prompt({
-          type: 'confirm',
-          name: 'overwrite',
-          message: '目录已存在，是否覆盖？',
-          default: false,
-        });
-        if (!overwrite) process.exit(1);
-        await fs.remove(targetDir);
-      }
-
-      // 3. 选择模板
-      let template = options.template || DEFAULT_TEMPLATE;
-      if (!options.template) {
-        const { selectedTemplate } = await inquirer.prompt({
-          type: 'list',
-          name: 'selectedTemplate',
-          message: '选择模板：',
-          choices: ['vue', 'react', 'node'], // 可自定义模板列表
-        });
-        template = `user/github-repo#${selectedTemplate}`; // 示例格式
-      }
-
-      // 4. 下载模板
-      console.log(chalk.blue('🚀 下载模板...'));
-      const emitter = degit(template, {
-        cache: false,
-        force: true,
-      });
-      await emitter.clone(targetDir);
-
-      // 5. 替换变量（可选）
-      const packagePath = path.join(targetDir, 'package.json');
-      if (fs.existsSync(packagePath)) {
-        const pkg = require(packagePath);
-        pkg.name = projectName;
-        fs.writeJsonSync(packagePath, pkg, { spaces: 2 });
-      }
-
-      // 6. 完成提示
-      console.log(chalk.green(`✅ 项目创建成功！目录：${targetDir}`));
-      console.log(chalk.yellow(`
-下一步：
-cd ${projectName}
-npm install
-npm run dev
-      `));
-    } catch (error) {
-      console.error(chalk.red('❌ 错误：'), error.message);
-      process.exit(1);
-    }
-  });
-
+  .argument('[project-name]', 'Project name')
+  .option('-t, --template <template>', 'template')
+  .action(command);
 program.parse(process.argv);
