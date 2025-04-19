@@ -14,7 +14,8 @@
   ],
 	"scripts": {
 		"dev": "tsup --watch",
-		"build": "tsup"
+		"build": "tsup",
+    "publish": "pnpm run build && pnpm publish"
 	},
 	"dependencies": {
 		"chalk": "^5.4.1",
