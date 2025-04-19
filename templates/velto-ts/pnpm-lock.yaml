@@ -6,8 +6,8 @@ settings:
 
 dependencies:
   '@velto/runtime':
-    specifier: 1.0.0-beta.0
-    version: 1.0.0-beta.0
+    specifier: 1.0.0-beta.1
+    version: 1.0.0-beta.1
 
 devDependencies:
   '@babel/preset-typescript':
@@ -17,8 +17,8 @@ devDependencies:
     specifier: ^7.20.5
     version: 7.20.5
   '@velto/babel-plugin-velto':
-    specifier: 1.0.0-beta.0
-    version: 1.0.0-beta.0
+    specifier: 1.0.0-beta.1
+    version: 1.0.0-beta.1
   sass:
     specifier: ^1.86.3
     version: 1.86.3
@@ -912,34 +912,34 @@ packages:
     resolution: {integrity: sha512-w28IoSUCJpidD/TGviZwwMJckNESJZXFu7NBZ5YJ4mEUnNraUn9Pm8HSZm/jDF1pDWYKspWE7oVphigUPRakIQ==}
     dev: true
 
-  /@velto/babel-plugin-velto@1.0.0-beta.0:
-    resolution: {integrity: sha512-oaav5KjRy/y501DyTEPtDx+X6NBS3bSRWRDfD5kW9PUAP2f4MJT9NBvI2NnWEP7vDcLC7CWN/Y6piCmz2byGhQ==}
+  /@velto/babel-plugin-velto@1.0.0-beta.1:
+    resolution: {integrity: sha512-vEkqCXDjvh4vaWHCmACwaaa6q388SOJM3xwYDzrNunQNWSewyW7y7OxqssiPAb5+LQ5HbSDPXsFYXbtDr4rMeQ==}
     dependencies:
       '@babel/core': 7.26.10
       '@babel/helper-module-imports': 7.25.9
       '@babel/plugin-syntax-jsx': 7.25.9(@babel/core@7.26.10)
       '@babel/traverse': 7.27.0
       '@babel/types': 7.27.0
-      '@velto/shared': 1.0.0-beta.0
+      '@velto/shared': 1.0.0-beta.1
     transitivePeerDependencies:
       - supports-color
     dev: true
 
-  /@velto/reactive@1.0.0-beta.0:
-    resolution: {integrity: sha512-AajJnJrgjils4PIMXQOIC/0h9Livby+tIBuPwDf+m03gvmmQ7albqCWy3pzdbL2+0SmfAEqvV1iVrw/cu4tJqg==}
+  /@velto/reactive@1.0.0-beta.1:
+    resolution: {integrity: sha512-5znE1HtS09kZKKtCEOWFNoWTV/l7CvMjeh+TkJORdArt5PDKsakcupscCh0yiJ4Rib6kVFANQ5X9oI1BeuMi3w==}
     dependencies:
-      '@velto/shared': 1.0.0-beta.0
+      '@velto/shared': 1.0.0-beta.1
     dev: false
 
-  /@velto/runtime@1.0.0-beta.0:
-    resolution: {integrity: sha512-nHgGHXzkIJN/DkRvM7WVL1AHhHyDMO31jugoclys4O2f39K/LxdSiOWZFgVL3TvL/ZmLxrcrCCDPjx983X6Jpg==}
+  /@velto/runtime@1.0.0-beta.1:
+    resolution: {integrity: sha512-DVYKRDiHo8qyh6JAM6TRKkO9xGRWC1zBVX9tW/i2g/f3uPUhIH2OdXvCFGKsmYpfHZqMN0LeRxqR8Y/Bw2PzSA==}
     dependencies:
-      '@velto/reactive': 1.0.0-beta.0
-      '@velto/shared': 1.0.0-beta.0
+      '@velto/reactive': 1.0.0-beta.1
+      '@velto/shared': 1.0.0-beta.1
     dev: false
 
-  /@velto/shared@1.0.0-beta.0:
-    resolution: {integrity: sha512-pjD0HU6DPQeB7xmIWEnv360vU23ttaXubpneWMzPydVVNc++pH+7mo5D0PZDf2TgwgyyCjfLmd6ypVoYk3+cKg==}
+  /@velto/shared@1.0.0-beta.1:
+    resolution: {integrity: sha512-PAjP9fVgmmnobaD/Oa7/49OzKjEsBHOeIvuDGQHwNa/PsNSIm7x1pwNf1EgTqhyiKp0DinCNq0EFvrlBOltK0w==}
 
   /braces@3.0.3:
     resolution: {integrity: sha512-yQbXgO/OSZVD2IsiLlro+7Hf6Q18EJrKSEsdoMzKePKXct3gvD8oLcOQdIzGupr5Fj+EDe8gO/lxc1BzfMpxvA==}
