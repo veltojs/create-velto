@@ -12,12 +12,12 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@velto/runtime": "1.0.0-beta.1"
+    "@velto/runtime": "1.0.0-beta.2"
   },
   "devDependencies": {
     "@babel/preset-typescript": "^7.27.0",
     "@types/babel__core": "^7.20.5",
-    "@velto/babel-plugin-velto": "1.0.0-beta.1",
+    "@velto/babel-plugin-velto": "1.0.0-beta.2",
     "sass": "^1.86.3",
     "typescript": "^5.8.3",
     "vite": "^6.2.6"
