@@ -12,7 +12,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@velto/runtime": "1.0.0-beta.2"
+    "@velto/runtime": "1.0.0-beta.4"
   },
   "devDependencies": {
     "@babel/preset-typescript": "^7.27.0",
