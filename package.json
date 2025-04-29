@@ -7,11 +7,6 @@
 	"bin": {
 		"create-velto": "dist/index.mjs"
 	},
-  "files": [
-    "dist",
-    "templates",
-    "LICENSE"
-  ],
 	"scripts": {
 		"dev": "tsup --watch",
 		"build": "tsup",
