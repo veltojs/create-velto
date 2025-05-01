@@ -1,6 +1,6 @@
 {
 	"name": "create-velto",
-	"version": "1.0.4",
+	"version": "1.0.5",
 	"type": "module",
 	"license": "MIT",
 	"author": "Zebing Fu",
@@ -10,7 +10,7 @@
 	"scripts": {
 		"dev": "tsup --watch",
 		"build": "tsup",
-    "publish": "pnpm run build && pnpm publish"
+    "release": "pnpm run build && pnpm publish"
 	},
 	"dependencies": {
 		"chalk": "^5.4.1",
