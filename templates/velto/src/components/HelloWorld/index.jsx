@@ -13,7 +13,7 @@ export default function Test(props = {}) {
           Vite Docs
         </a>
         |
-        <a href="https://github.com/zebing/velto" target="_blank">Velto Docs</a>
+        <a href="https://veltojs.github.io/docs/" target="_blank">Velto Docs</a>
       </p>
 
       <button type="button" onClick={() => count.setValue(count.value + 1)}>count is: {count.value}</button>
