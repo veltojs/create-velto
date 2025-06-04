@@ -12,10 +12,10 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "@velto/runtime": "1.0.0-beta.5"
+    "@velto/runtime": "1.0.0-beta.6"
   },
   "devDependencies": {
-    "@velto/babel-plugin-velto": "1.0.0-beta.5",
+    "@velto/babel-plugin-velto": "1.0.0-beta.6",
     "sass": "^1.86.3",
     "vite": "^6.2.6",
     "vite-plugin-velto": "^1.0.2"
